@@ -1,7 +1,12 @@
 #!/bin/bash
 
-speech=$1
-context=$2
+while getopts 's:c:' opt
+do
+  case $opt in
+    s) speech=$OPTARG ;;
+    c) context=$OPTARG ;;
+  esac
+done
 
 convert -background transparent -fill black -gravity center -font font.ttf -size 170x100 caption:"$speech" speech.png
 composite -geometry +20+30 speech.png  timmy.png  output.png
